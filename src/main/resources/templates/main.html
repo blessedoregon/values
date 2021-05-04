@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:style="http://www.w3.org/1999/xhtml">
+<style>
+    .container
+    {
+        max-width : 100%!important;
+        max-height : 100%!important;
+    }
+    header
+    {
+        background-color: rgb(0 255 161);;
+        width : 100%;
+        height : auto;
+        backgroung-size : cover;
+    }
+    .table-striped
+    {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 14px;
+        border-radius: 10px;
+        border-spacing: 0;
+        text-align: center;
+        margin: auto;
+    }
+    button
+    {
+        width: 200px;
+        margin: 1px;
+    }
+    th {
+        background: #BCEBDD;
+        color: white;
+        text-shadow: 0 1px 1px #2D2020;
+        padding: 10px 20px;
+    }
+    th, td {
+        border-style: solid;
+        border-width: 0 1px 1px 0;
+        border-color: white;
+    }
+    th:first-child, td:first-child {
+        text-align: left;
+    }
+    th:first-child {
+        border-top-left-radius: 10px;
+    }
+    th:last-child {
+        border-top-right-radius: 10px;
+        border-right: none;
+    }
+    td {
+        padding: 10px 20px;
+        background: #F8E391;
+    }
+    tr:last-child td:first-child {
+        border-radius: 0 0 0 10px;
+    }
+    tr:last-child td:last-child {
+        border-radius: 0 0 10px 0;
+    }
+    tr td:last-child {
+        border-right: none;
+    }
+    h2,p
+    {
+        text-align: center;
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        margin: 5px;
+    }
+    form
+    {
+        margin: 20px;
+        text-align: center;
+    }
+    .name
+    {
+        align: middle;
+        vertical-align: center;
+    }
+    .imgP
+    {
+        align: middle;
+        vertical-align: center;
+    }
+</style>
+<head>
+    <title th:text="${title}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" >
+<header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm rounded">
+    <p class="h5 my-0 me-md-auto fw-normal">Transfer value</p>
+    <nav class="my-2 my-md-0 me-md-3">
+    </nav>
+</header>
+<h2>Most valuable players</h2>
+<form th:action="@{/bd}">
+    <input class="rounded mybtn" type="text" name="keyword"/>
+    <input class="bg-light text-black rounded mybtn" type="submit" value="search"/>
+</form>
+<div style="text-align: center;">
+    <table class="table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Игрок</th>
+            <th>Позиция</th>
+            <th>Национальность</th>
+            <th>Клуб</th>
+            <th>Возраст</th>
+            <th>Стоимость</th>
+        </tr>
+        </thead>
+            <tr th:each="el : ${player}">
+                <td  th:text="${el.count}"/>
+                <td>
+                    <div class="name" th:text="${el.name}" ></div>
+                    <img class="imgP" th:src="${el.imgP}"/>
+                </td>
+                <td th:text="${el.position}"/>
+                <td>
+                <img th:src="${el.imgC}"/>
+                </td>
+                <td>
+                <img th:src="${el.imgCl}"/>
+                </td>
+                <td th:text="${el.age}"/>
+                <td th:text="${el.price}"/>
+            </tr>
+        </div>
+    </table>
+</div>
+</div>
+</body>
+</html>
